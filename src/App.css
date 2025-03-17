@@ -1,16 +1,26 @@
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #ff00ff;
+  border-radius: 8px;
   float: left;
-  font-size: 24px;
+  font-size: 36px;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  line-height: 64px;
+  height: 64px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 64px;
+  transition: all 0.3s ease;
+  color: white;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+}
+
+.square:hover {
+  background: rgba(255, 0, 255, 0.3);
+  transform: scale(1.05);
 }
 
 .board-row:after {
@@ -20,13 +30,90 @@
 }
 
 .status {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  animation: pulse 2s infinite;
 }
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 10px #00ffff; }
+  50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff; }
+  100% { text-shadow: 0 0 10px #00ffff; }
+}
+
 .game {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.game-board {
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
 
 .game-info {
-  margin-left: 20px;
+  margin-left: 40px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  max-width: 250px;
+}
+
+.game-info p {
+  color: #ffff00;
+  font-size: 20px;
+  text-shadow: 0 0 10px #ffff00;
+  margin-bottom: 20px;
+}
+
+.game-info ol {
+  padding-left: 20px;
+}
+
+.game-info li {
+  margin-bottom: 8px;
+}
+
+.game-info button {
+  background: linear-gradient(45deg, #ff00cc, #3333ff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+  width: 100%;
+}
+
+.game-info button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 1);
+}
+
+/* Style différent pour X et O */
+.square:nth-child(odd) {
+  color: #ffff00;
+  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+}
+
+.square:nth-child(even) {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
 }
