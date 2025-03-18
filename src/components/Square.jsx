@@ -1,9 +1,10 @@
 import React from 'react'
 
-function Square({ value, onSquareClick }) {
-
+function Square({ value, onSquareClick, isWinning }) {
+    const squareClass = isWinning ? "square winning-square" : "square";
+    
     return (
-            <button className="square" onClick={onSquareClick}>{value}</button>
+        <button className={squareClass} onClick={onSquareClick}>{value}</button>
     )
 }
 

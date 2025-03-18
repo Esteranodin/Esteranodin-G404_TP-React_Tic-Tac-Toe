@@ -1,6 +1,42 @@
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: var(--glow-intense) rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.game-board {
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: var(--glow-standard) rgba(0, 255, 255, 0.5);
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.status {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-blue);
+  text-shadow: 0 0 10px var(--color-blue);
+  animation: pulse 2s infinite;
+}
+
 .square {
   background: rgba(0, 0, 0, 0.4);
-  border: 2px solid #ff00ff;
+  border: 2px solid var(--color-pink);
   border-radius: 8px;
   float: left;
   font-size: 36px;
@@ -14,8 +50,8 @@
   width: 64px;
   transition: all 0.3s ease;
   color: white;
-  text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+  text-shadow: 0 0 10px #fff, 0 0 20px var(--color-pink), 0 0 30px var(--color-pink);
+  box-shadow: var(--glow-standard) rgba(255, 0, 255, 0.7);
 }
 
 .square:hover {
@@ -23,61 +59,45 @@
   transform: scale(1.05);
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+
+.square:nth-child(odd) {
+  color: var(--color-yellow);
+  text-shadow: 0 0 10px var(--color-yellow), 0 0 20px var(--color-yellow);
 }
 
-.status {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #00ffff;
-  text-shadow: 0 0 10px #00ffff;
-  animation: pulse 2s infinite;
+.square:nth-child(even) {
+  color: var(--color-blue);
+  text-shadow: 0 0 10px var(--color-blue), 0 0 20px var(--color-blue);
 }
 
-@keyframes pulse {
-  0% { text-shadow: 0 0 10px #00ffff; }
-  50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff; }
-  100% { text-shadow: 0 0 10px #00ffff; }
+
+.winning-square {
+  background: rgba(0, 255, 0, 0.4) !important;
+  border-color: var(--color-green) !important;
+  animation: winner-pulse 1s infinite alternate;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8) !important;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 30px;
-  margin: 20px auto;
-  max-width: 800px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
+.winning-square:nth-child(odd),
+.winning-square:nth-child(even) {
+  text-shadow: 0 0 10px var(--color-green), 0 0 20px var(--color-green), 0 0 30px var(--color-green) !important;
+  color: var(--color-green) !important;
 }
 
-.game-board {
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-}
 
 .game-info {
   margin-left: 40px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  box-shadow: var(--glow-standard) rgba(255, 105, 180, 0.5);
   max-width: 250px;
 }
 
 .game-info p {
-  color: #ffff00;
+  color: var(--color-yellow);
   font-size: 20px;
-  text-shadow: 0 0 10px #ffff00;
+  text-shadow: 0 0 10px var(--color-yellow);
   margin-bottom: 20px;
 }
 
@@ -90,7 +110,7 @@
 }
 
 .game-info button {
-  background: linear-gradient(45deg, #ff00cc, #3333ff);
+  background: linear-gradient(45deg, var(--color-purple), var(--color-dark-blue));
   color: white;
   border: none;
   border-radius: 5px;
@@ -98,22 +118,70 @@
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+  box-shadow: var(--glow-standard) rgba(255, 0, 255, 0.7);
   width: 100%;
 }
 
 .game-info button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 0, 255, 1);
+  box-shadow: var(--glow-standard) rgba(255, 0, 255, 1);
 }
 
-/* Style différent pour X et O */
-.square:nth-child(odd) {
-  color: #ffff00;
-  text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+/* -------------- Responsive --------------*/
+@media (max-width: 768px) {
+  .game {
+    flex-direction: row; 
+    justify-content: space-between;
+    padding: 15px;
+    width: 95%;
+  }
+  
+  .game-board {
+    padding: 10px;
+    transform: scale(0.8); 
+    transform-origin: left center;
+  }
+  
+  .square {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 28px;
+  }
+  
+  .game-info {
+    margin-left: 10px;
+    padding: 10px;
+    max-width: 180px;
+  }
+  
+  .game-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .game-info button {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+  
+  .status {
+    font-size: 18px;
+  }
 }
 
-.square:nth-child(even) {
-  color: #00ffff;
-  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+
+@media (max-width: 480px) {
+  .game {
+    width: 98%;
+    padding: 10px;
+  }
+  
+  .game-board {
+    transform: scale(0.65);
+  }
+  
+  .game-info {
+    max-width: 140px;
+  }
 }

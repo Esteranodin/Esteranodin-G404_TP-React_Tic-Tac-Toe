@@ -14,6 +14,9 @@ function Game() {
     }
 
     function jumpTo(nextMove) {
+        if (nextMove === 0) {
+            setHistory([Array(9).fill(null)]);
+        }
         setCurrentMove(nextMove);
     }
 

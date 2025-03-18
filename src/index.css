@@ -1,18 +1,52 @@
+:root {
+
+  --color-pink: #ff00ff;
+  --color-blue: #00ccff;
+  --color-yellow: #ffff00;
+  --color-green: #00ff00;
+  --color-purple: #ff00cc;
+  --color-dark-blue: #3333ff;
+  --color-orange: #ff6600;
+  
+
+  --glow-standard: 0 0 15px;
+  --glow-intense: 0 0 25px;
+}
+
 * {
   font-family: 'Anybody', cursive;
 }
 
 body {
-  background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff6600);
+  background: linear-gradient(45deg, var(--color-purple), var(--color-dark-blue), var(--color-blue), var(--color-orange));
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   color: white;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* -------------- Animations -------------- */
+@keyframes pulse {
+  0% { text-shadow: 0 0 10px var(--color-blue); }
+  50% { text-shadow: 0 0 20px var(--color-blue), 0 0 30px var(--color-blue); }
+  100% { text-shadow: 0 0 10px var(--color-blue); }
+}
+
+@keyframes winner-pulse {
+  0% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); }
+  100% { box-shadow: 0 0 30px rgba(0, 255, 0, 1); }
 }
